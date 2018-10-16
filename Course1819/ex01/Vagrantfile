@@ -1,0 +1,50 @@
+Vagrant.configure("2") do |config|
+  
+
+  config.vm.define "vm1" do |vm1|
+    vm1.vm.box = "ubuntu/trusty64"
+
+    vm1.vm.network "public_network"
+
+    vm1.vm.provision "file", source: "resolv.conf", destination: "/tmp/resolv.conf"
+
+    vm1.vm.provision "shell", path: "script.sh"
+
+  end
+
+  config.vm.define "vm2" do |vm2|
+    vm2.vm.box = "ubuntu/trusty64"
+
+    vm2.vm.network "private_network", ip:"172.16.1.1"
+
+    vm2.vm.provision "file", source: "resolv.conf", destination: "/tmp/resolv.conf"
+
+    vm2.vm.provision "shell", path: "script.sh"
+
+
+  end
+
+  config.vm.define "vm3" do |vm3|
+    vm3.vm.box = "ubuntu/trusty64"
+
+    vm3.vm.network "private_network", ip:"172.16.1.2"
+
+    vm3.vm.provision "file", source: "resolv.conf", destination: "/tmp/resolv.conf"
+
+    vm3.vm.provision "shell", path: "script.sh"
+
+
+  end
+
+  config.vm.define "vm4" do |vm4|
+    vm4.vm.box = "ubuntu/trusty64"
+
+    vm4.vm.network "private_network", ip:"172.16.1.3"
+
+    vm4.vm.provision "file", source: "resolv.conf", destination: "/tmp/resolv.conf"
+
+    vm4.vm.provision "shell", path: "script.sh"
+
+  end
+
+end
