@@ -8,3 +8,21 @@
 - Deberás crear las carpetas HOME adecuadas.
 
 ## Solución
+
+Primero tenemos que localizar una box que esté disponible para los dos hypervisores. Por ejemplo _Debian/jessie64_.
+
+Añadimos esas boxes a nuestro sistema:
+
+```bash
+ vagrant box add debian/jessie64
+ vagrant box add --provider libvirt debian/jessie64
+```
+
+Para arrancar dos máquina virtuales (una para cada proveedor) debo crear dos directorios:
+
+```bash
+mkdir vbox
+mkdir libvirt
+```
+
+En cada una de esas carpetas creo un Vagrantfile
