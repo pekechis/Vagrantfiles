@@ -1,0 +1,45 @@
+Vagrant.configure("2") do |config|
+  
+
+    #Máquine que hará las funciones de Router
+    config.vm.define "firewall" do |firewall|
+      firewall.vm.box = "ubuntu/trusty64"
+  
+      firewall.vm.provider "virtualbox" do |v|
+        v.memory = 256
+      end
+
+      # Red local 1. Será la que tenga salida
+      firewall.vm.network "private_network", ip: "172.16.10.1", netmask: "24", 
+
+      # Movemos los ficheros para arrancar el firewall y para borrar todo
+      firewall.vm.provision "file", source: "firewall.sh", destination: "/tmp/firewall.sh"
+      firewall.vm.provision "file", source: "clean_firewall.sh", destination: "/tmp/clean_firewall.sh"
+
+  
+      firewall.vm.provision "shell", path: "script.sh"
+  
+    end
+  
+    # Máquina que servirá de cliente
+    config.vm.define "ciente" do |cliente|
+      cliente.vm.box = "ubuntu/trusty64"
+  
+      cliente.vm.provider "virtualbox" do |v|
+        v.memory = 256
+      end
+  
+    end
+
+    #Máquina que será el servidor Web de la DMZ
+    config.vm.define "dmz" do |dmz|
+      dmz.vm.box = "ubuntu/trusty64"
+  
+      # Red pública
+      dmz.vm.network "private_network", ip:"172.16.20.1"  
+  
+    end
+  
+    
+  
+  end
