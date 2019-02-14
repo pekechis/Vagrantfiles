@@ -4,4 +4,4 @@
 route del default
 
 # Añado el enrutamiento por defecto a la ip del router
-route add default gw 192.168.1.110
+route add default gw 172.16.20.1
