@@ -21,4 +21,5 @@ iptables -A OUPUT -i lo ACCEPT
 
 iptables -A INPUT -s 192.168.1.110 -j ACCEPT
 iptables -A OUTPUT -d 192.168.1.110 -j ACCEPT
+
 # Con esto permito hacer forward de los paquetes en el Firewall
